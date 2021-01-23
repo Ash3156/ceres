@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>File Upload</title>
+  </head>
+  <body>
+    <h1>File Upload</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+      <p><input type="file" name="image_file" accept=".jpg,.png" multiple></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+    <br/>
+    {% for file in files %}
+        <div style="display: flex; flex-direction: row; align-items: center">
+            <div style="width: 600px; height: 400px">
+                {{ file }}
+            </div>
+            <div>
+                <img src="{{ url_for('upload', filename=file) }}" style="width: 512px">
+            </div>
+        </div>
+      
+    {% endfor %}
+  </body>
+</html>
