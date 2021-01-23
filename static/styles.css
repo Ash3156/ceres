@@ -1,0 +1,55 @@
+main{
+    text-align: center;
+    text-emphasis-color:green; 
+    font-family: 'Open Sans', sans-serif;
+}
+
+.left-text{
+    text-align: left;
+}
+
+p{
+    font-size: x-small;
+}
+
+.jumbotron-fluid{
+    background-color: white;
+}
+
+form{
+    display: inline;
+}
+
+#google_bar{
+    border-radius: 25px;
+    padding: 20px; 
+    width: 500px;
+    height: 15px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 0.5em;
+}
+
+/* got from w3schools.org */
+.vertical-center{
+    display: flex;
+    align-items: center;
+}
+
+.logo-text{
+    color: #3CB371;
+}
+
+footer{
+    height: 1rem; 
+}
+
+
+.navbar{
+    align-items: center;
+}
