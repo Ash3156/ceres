@@ -1,13 +1,22 @@
-<!doctype html>
-<html>
-  <head>
-    <title>ceres | upload</title>
-  </head>
-  <body>
-    <h1>File Upload</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
-      <p><input type="file" name="image_file" accept=".jpg,.png" multiple></p>
-      <p><input type="submit" value="Submit"></p>
-    </form>
-  </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}home{% endblock %}
+{% block main %}
+<div class="jumbotron d-flex align-items-center min-vh-100" style="background-color:rgb(255, 255, 255)">
+    <div style="background-color:white" class="container container-fluid text-center">
+        <img src="https://i.ibb.co/JrMqPgp/real-krishi-Resized.png">
+        <br>
+        <div class="container-fluid" style="background-color:rgb(255, 255, 255)">
+          <form method="POST" action="" enctype="multipart/form-data">
+            <p><input type="file" name="image_file" accept=".jpg,.png" multiple></p>
+            <p><input type="submit" value="Submit"></p>
+          </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_footer %}
+<footer class="small text-muted" style="background-color:white">
+    Developed at BoilerMake by Rayhan Ahmed, Christy Jestin, David Liu, and Ashlan Ahmed.
+</footer>
+{% endblock %}

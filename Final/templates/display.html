@@ -1,15 +1,16 @@
-<!doctype html>
-<html>
-  <head>
-    <title>ceres | display</title>
-    <style>
+{% extends "layout.html" %}
+{% block title %}home{% endblock %}
+
+
+    <!-- <style>
         .h2 {
             font-size: 400px;
         }
         .flex-container {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             padding-bottom: 50px;
+            justify-content: center;
         }
         .image-container {
             padding-left: 50px;
@@ -42,15 +43,11 @@
             justify-content: center;
             width: 600px;
         }
-    </style>
-  </head>
-  <body>
-        
-            <a style='text-decoration: none; color:#3e1a66; font-size: 30px' href="/">ceres</a>
-            <br/>
-            <hr/>
-            <br/>
-    
+    </style> -->
+
+{% block main %}
+            <a href="/"><img src="https://i.ibb.co/JrMqPgp/real-krishi-Resized.png" style='width: 150px'></a>
+            
             {% for i in range(num) %}
                 <div class="flex-container">
                     <div class="image-container">
@@ -77,6 +74,10 @@
                     </div>
                 </div>
             {% endfor %}
-        
-  </body>
-</html>
+{% endblock %}
+
+{% block custom_footer %}
+<footer class="small text-muted" style="background-color:white">
+    Developed at BoilerMake by Rayhan Ahmed, Christy Jestin, David Liu, and Ashlan Ahmed.
+</footer>
+{% endblock %}

@@ -6,7 +6,7 @@ import functions as f
 import deployed
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 2048 * 2048
+app.config['MAX_CONTENT_LENGTH'] = 8192 * 8192
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png']
 app.config['UPLOAD_PATH'] = 'static/uploads'
 app.config['IMAGE_PATH'] = 'static/images'
