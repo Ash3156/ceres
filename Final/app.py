@@ -12,6 +12,7 @@ app.config['UPLOAD_PATH'] = 'static/uploads'
 app.config['IMAGE_PATH'] = 'static/images'
 
 # code to download and store all images; no longer necessary after run for first time
+# since we've now saved all images in the repository and pushed to github
 # f.download_images(f.create_dict('static/image_links.csv')[0], "static/images/")
 
 # code to load all necessary info for each plant disease

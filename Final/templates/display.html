@@ -1,83 +1,118 @@
-{% extends "layout.html" %}
-{% block title %}home{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
 
-    <!-- <style>
-        .h2 {
+    <title>krishi | display</title>
+
+    <!-- taken from Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    
+    <style>
+        h2 {
             font-size: 400px;
+            font-family:'Trebuchet MS', Arial, sans-serif;
+            font-size: 60px; 
+            word-wrap: break-word;
         }
-        .flex-container {
+        /* .flex-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             padding-bottom: 50px;
             justify-content: center;
-        }
+        } */
         .image-container {
-            padding-left: 50px;
-            padding-right: 50px;
-            padding-top: 50px;
+            /* padding-top: 50px; */
+            /* margin-right: 50px; */
             display: flex;
             flex-direction: row;
             align-items: flex-start;
-            justify-content: center;
+            justify-content: space-around;
+            width: 700px;
+            /* margin-right: 50px;
+            margin-left: 50px; */
         }
         .title-container {
             padding-top: 10px;
             padding-bottom: 20px;
-            padding-right: 50px;
+            /* padding-right: 50px; */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
-            width: 600px;
+            width: 700px;
         }
         .profile-container {
             background-color: #a5d1cf;
-            margin-left: 100px;
+            /* margin-left: 50px; */
             padding-left: 50px;
             padding-right: 50px;
             padding-bottom: 50px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            width: 600px;
+            width: 800px;
+            margin-bottom: 50px;
         }
-    </style> -->
+        h3 {
+            padding-bottom: 0px;
+            padding-top: 20px;
+            font-family:'Trebuchet MS', Arial, sans-serif;
+        }
 
-{% block main %}
-            <a href="/"><img src="https://i.ibb.co/JrMqPgp/real-krishi-Resized.png" style='width: 150px'></a>
-            
-            {% for i in range(num) %}
-                <div class="flex-container">
+    </style>
+</head>
+
+<body>
+    <a href="/"><img src="https://i.ibb.co/JrMqPgp/real-krishi-Resized.png" style='width: 150px'></a>
+    <center>
+        {% for i in range(num) %}
+            <div class="profile-container">
+                <div class="title-container">
+                    {% set result = results[i] %}
+                    <h2>
+                        {{ result }}
+                    </h2>
                     <div class="image-container">
                         {% set file = files[i] %}
-                        <img src="{{ url_for('upload', filename=file) }}" style="width: 600px">
-                    </div>
-                    <div class="profile-container">
-                        <div class="title-container">
-                            {% set result = results[i] %}
-                            <h2 style="font-size: 60px; word-wrap: break-word">{{ result }}</h2>
-                            {% set image_path = result +'.jpg' %}
-                            <img src="{{ url_for('image', filename=image_path) }}" style="width: 300px">
+                        <div>
+                            <h3>Your Image</h3>
+                            <img src="{{ url_for('upload', filename=file) }}" style="width: 300px">
                         </div>
-                        {% for attribute in pd_dict[result].keys() %}
-                            <h3>{{attribute}}</h3>
-                            <p>{{pd_dict[result][attribute]}}</p>
-                        {% endfor %}
-                        {% if link_dict[result] %}
-                            <h3> More Info</h3>
-                            {% for i in range(link_dict[result] | length) %}
-                                <a href="{{ link_dict[result][i] }}">Link {{i+1}}</a>
-                            {% endfor %}
-                        {% endif %}
+                        {% set image_path = result +'.jpg' %}
+                        <div>
+                            <h3>Example Image</h3>
+                            <img src="{{ url_for('image', filename=image_path) }}" style="width: 300px">    
+                        </div>
                     </div>
                 </div>
-            {% endfor %}
-{% endblock %}
-
-{% block custom_footer %}
-<footer class="small text-muted" style="background-color:white">
-    Developed at BoilerMake by Rayhan Ahmed, Christy Jestin, David Liu, and Ashlan Ahmed.
-</footer>
-{% endblock %}
+                <div style='text-align: left;'>
+                    {% for attribute in pd_dict[result].keys() %}
+                        <h3>{{attribute}}</h3>
+                        <p style="font-family:'Trebuchet MS', Arial, sans-serif;">
+                            {{pd_dict[result][attribute]}}
+                        </p>
+                    {% endfor %}
+                    {% if link_dict[result] %}
+                        <h3> More Info</h3>
+                        {% for i in range(link_dict[result] | length) %}
+                            <a style = "font-family:'Trebuchet MS', Arial, sans-serif;" href="{{ link_dict[result][i] }}">
+                                Link {{i+1}}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </center>
+    <footer style="background-color:white; text-align: center; font-size: 20px; padding-bottom: 20px;">
+        Developed at BoilerMake by Rayhan Ahmed, Christy Jestin, David Liu, and Ashlan Ahmed.
+      </footer>
+</body>
+</html>

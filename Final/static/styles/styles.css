@@ -41,16 +41,3 @@ footer{
     background-color: rgb(255, 255, 255);
     text-align: center;
 }
-
-.profile-container{
-    background-color: #a5d1cf;
-    margin-left: 100px;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 600px;
-}

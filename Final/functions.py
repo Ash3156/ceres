@@ -25,7 +25,7 @@ def create_dict(filename):
                 diseases.append(row[0])
                 plant_disease_dict[row[0]]=dict()
                 for i in range(len(categories)):
-                    if row[i+1]!='':
+                    if row[i+1]:
                         plant_disease_dict[row[0]][categories[i]]=row[i+1]
     return (plant_disease_dict, diseases)
 
