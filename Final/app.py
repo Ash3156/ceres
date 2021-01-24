@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, abort, sen
 from werkzeug.utils import secure_filename
 import glob
 import functions as f
-import driver
+import deployed
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 2048 * 2048
@@ -30,7 +30,7 @@ def display():
     files = os.listdir(app.config['UPLOAD_PATH'])
     results=[]
     for file in files:
-        results.append(diseases[driver.predict_new(file)])
+        results.append(diseases[deployed.predict_new(os.path.join(app.config['UPLOAD_PATH'], file))])
     return render_template('display.html', files=files, pd_dict=plant_disease_dict, results=results, num=len(files), link_dict=link_dict)
 
 @app.route('/', methods=['POST'])
