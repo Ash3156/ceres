@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, abort, sen
 from werkzeug.utils import secure_filename
 import glob
 import functions as f
+import driver
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 2048 * 2048
@@ -17,7 +18,7 @@ app.config['IMAGE_PATH'] = 'static/images'
 link_dict=f.create_link_dict("static/info_links.csv")
 plant_disease_dict, diseases = f.create_dict('static/disease_info.csv')
 
-results=['Potato Late Blight', 'Tomato Leaf Mold', 'Tomato Late Blight', 'Peach Healthy']
+# results=['Potato Late Blight', 'Tomato Leaf Mold', 'Tomato Late Blight', 'Peach Healthy']
 
 
 @app.route('/')
@@ -27,6 +28,9 @@ def index():
 @app.route('/display')
 def display():
     files = os.listdir(app.config['UPLOAD_PATH'])
+    results=[]
+    for file in files:
+        results.append(diseases[driver.predict_new(file)])
     return render_template('display.html', files=files, pd_dict=plant_disease_dict, results=results, num=len(files), link_dict=link_dict)
 
 @app.route('/', methods=['POST'])
