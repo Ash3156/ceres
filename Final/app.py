@@ -17,7 +17,7 @@ app.config['IMAGE_PATH'] = 'static/images'
 link_dict=f.create_link_dict("static/info_links.csv")
 plant_disease_dict, diseases = f.create_dict('static/disease_info.csv')
 
-results=['Potato Late Blight', 'Tomato Leaf Mold']
+results=['Potato Late Blight', 'Tomato Leaf Mold', 'Tomato Late Blight', 'Peach Healthy']
 
 
 @app.route('/')
