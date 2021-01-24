@@ -5,6 +5,7 @@
     <div style="background-color:white" class="container container-fluid text-center">
         <img src="https://i.ibb.co/JrMqPgp/real-krishi-Resized.png">
         <br>
+        <p>This model has been trained on images of only leaves/fruits and their infected counterparts. Therefore, if you upload an image of an entire plant, results may not be accurate.</p>
         <div class="container-fluid" style="background-color:rgb(255, 255, 255)">
           <form method="POST" action="" enctype="multipart/form-data">
             <p><input type="file" name="image_file" accept=".jpg,.png" multiple></p>
@@ -16,7 +17,7 @@
 {% endblock %}
 
 {% block custom_footer %}
-<footer class="small text-muted" style="background-color:white">
+<footer style="background-color:white">
     Developed at BoilerMake by Rayhan Ahmed, Christy Jestin, David Liu, and Ashlan Ahmed.
 </footer>
 {% endblock %}

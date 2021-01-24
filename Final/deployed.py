@@ -52,7 +52,7 @@ def predict_new (path):
     img_array = tf.expand_dims(keras.preprocessing.image.img_to_array(img), 0)
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
-    print("Classified as {}. Model is {} percent confident in this classification.".format(class_names[np.argmax(score)], 100 * np.max(score)))
+    # print("Classified as {}. Model is {} percent confident in this classification.".format(class_names[np.argmax(score)], 100 * np.max(score)))
     return np.argmax(score)
 
 # Iterate through user images and run them through predict_new:
