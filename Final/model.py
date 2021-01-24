@@ -103,3 +103,49 @@ plt.show()
 # Print accuracy metrics:
 loss, accuracy = model.evaluate(val_ds, verbose=2)
 print('accuracy: {:5.2f}%'.format(100 * accuracy))
+
+
+# Split keras DataSet objects into image and tag sets:
+x_train = np.concatenate([x for x, y in train_ds], axis=0)
+y_train = np.concatenate([y for x, y in train_ds], axis=0)
+
+x_test = np.concatenate([x for x, y in val_ds], axis=0)
+y_test = np.concatenate([y for x, y in val_ds], axis=0)
+
+
+# One hot encode the y vals to be able to make the confusion matrix:
+from keras.utils import to_categorical
+
+y_train_one_hot = to_categorical(y_train, num_classes= 39)
+y_test_one_hot = to_categorical(y_test, num_classes= 39)
+
+# Easier naming convention:
+test_data = x_test
+test_labels = y_test_one_hot
+
+# Create predictions:
+preds = model.predict(test_data)
+np.argmax(preds, axis=1)
+
+# Produce and display classification metrics (f1, recall, precision, accuracy):
+classification_metrics = metrics.classification_report(test_labels, preds, target_names = class_names)
+print(classification_metrics)
+
+categorical_test_labels = pd.DataFrame(y_test_one_hot).idxmax(axis=1)
+categorical_preds = pd.DataFrame(preds).idxmax(axis=1)
+
+
+# Produce confusion matrix and display it:
+confusion_matrix= confusion_matrix(categorical_test_labels, categorical_preds)
+
+
+confusion_matrix = metrics.confusion_matrix(y_true=y_test_one_hot, y_pred=preds, labels=class_names)
+print(confusion_matrix)
+fig = plt.figure()
+ax = fig.add_subplot(111)
+cax = ax.matshow(confusion_matrix)
+plt.title('Confusion matrix of the classifier')
+fig.colorbar(cax)
+plt.xlabel('Predicted')
+plt.ylabel('True')
+plt.show()
