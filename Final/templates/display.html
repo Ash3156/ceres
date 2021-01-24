@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ceres | display</title>
+    <style>
+        .h2 {
+            font-size: 400px;
+        }
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 50px;
+        }
+        .image-container {
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .title-container {
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-right: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            width: 600px;
+        }
+        .profile-container {
+            background-color: #a5d1cf;
+            margin-left: 100px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            width: 600px;
+        }
+    </style>
+  </head>
+  <body>
+        
+            <a style='text-decoration: none; color:#3e1a66; font-size: 30px' href="/">ceres</a>
+            <br/>
+            <hr/>
+            <br/>
+    
+            {% for i in range(num) %}
+                <div class="flex-container">
+                    <div class="image-container">
+                        {% set file = files[i] %}
+                        <img src="{{ url_for('upload', filename=file) }}" style="width: 600px">
+                    </div>
+                    <div class="profile-container">
+                        <div class="title-container">
+                            {% set result = results[i] %}
+                            <h2 style="font-size: 60px; word-wrap: break-word">{{ result }}</h2>
+                            {% set image_path = result +'.jpg' %}
+                            <img src="{{ url_for('image', filename=image_path) }}" style="width: 300px">
+                        </div>
+                        {% for attribute in pd_dict[result].keys() %}
+                            <h3>{{attribute}}</h3>
+                            <p>{{pd_dict[result][attribute]}}</p>
+                        {% endfor %}
+                        {% if link_dict[result] %}
+                            <h3> More Info</h3>
+                            {% for i in range(link_dict[result] | length) %}
+                                <a href="{{ link_dict[result][i] }}">Link {{i+1}}</a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        
+  </body>
+</html>
